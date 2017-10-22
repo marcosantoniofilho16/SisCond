@@ -1,0 +1,38 @@
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 2rem;
+}
+
+/*nav {
+	background-color: #3c8dbc;
+}
+
+.navbar-inverse .navbar-nav .nav-link {
+    color: rgba(255,255,255, 1);
+}
+
+.active {
+	background: #025aa5;
+} 
+
+.navbar {
+	padding: .1rem 1rem;
+}*/
+
+.contorno {
+	text-shadow: 0.1em 0.1em 0.2em black;
+}
+
+/*.carousel {
+    margin-bottom: 0rem;
+}
+
+.container {
+	text-align: justify;
+}
+
+#formularios {
+	margin: 0 auto;
+	margin-top: 2rem;
+}*/
+

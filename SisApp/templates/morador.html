@@ -1,0 +1,71 @@
+{% extends "layout.html" %}
+{% block conteudo %}
+
+<script>
+  document.getElementById('Morador').className = 'nav-link active';
+</script>
+
+<br><br>
+<div id="formularios" class="box box-info col-sm-11">
+            <div class="box-header with-border">
+              {% if Informacoes: %}
+                <h3 class="box-title">Alterar Morador</h3>
+              {% else %}
+                <h3 class="box-title">Cadastro de Morador</h3>
+              {% endif %}
+              
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form class="form-horizontal" method="POST" action="{% if Informacoes: %} {{url_for('alterarMorador', index=index)}} {% else %} {{url_for('Morador')}} {% endif %}">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label"><b>Nome</b></label>
+
+                  <div class="col-sm-10">
+                    <input name="nome" type="text" class="form-control" id="nome" placeholder="Nome" {%if Informacoes:%} value="{{Informacoes['nome']}}" {%endif%} required autofocus>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label"><b>Telefone</b></label>
+
+                  <div class="col-sm-10">
+                    <input name="telefone" type="text" class="form-control" id="telefone" placeholder="Telefone" {%if Informacoes:%} value="{{Informacoes['telefone']}}" {%endif%} required autofocus>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label"><b>CPF</b></label>
+
+                  <div class="col-sm-10">
+                    <input name="cpf" type="text" class="form-control" id="cpf" placeholder="CPF" {%if Informacoes:%} value="{{Informacoes['cpf']}}" {%endif%} required autofocus>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label"><b>Apartamentos:</b></label>
+
+                  <div class="col-sm-10">
+                    <select name="apartamento" class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
+                      {% for apartamento in apartamentos if not apartamentos.hidden: %}
+                         <option value="{{apartamento.id}}" {%if Informacoes and Informacoes['id_apartamento'] == apartamento['id']: %} selected="selected" {%endif%}>{{apartamento.descricao}}</option>
+                      {% endfor %}
+                  </select>
+                  </div>
+                </div>
+
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <a href=""><button type="button" class="btn btn-default">Cancelar</button><a>
+                <button type="submit" class="btn btn-info pull-right">Salvar</button>
+              </div>
+              <!-- /.box-footer -->
+            </form>
+          </div>
+
+<hr>
+
+{% include 'listagem.html' %}
+
+{% endblock %}

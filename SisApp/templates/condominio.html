@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+{% block conteudo %}
+
+<script>
+  document.getElementById('Condominio').className = 'nav-link active';
+</script>
+
+<br><br>
+<div id="formularios" class="box box-info col-sm-11">
+            <div class="box-header with-border">
+              {% if Informacoes: %}
+                <h3 class="box-title">Alterar Condomínio</h3>
+              {% else %}
+                <h3 class="box-title">Cadastro de Condomínio</h3>
+              {% endif %}
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form class="form-horizontal" method="POST" action="{% if Informacoes: %} {{url_for('alterarCondominio', index=index)}} {% else %} {{url_for('Condominio')}} {% endif %}">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label"><b>Nome</b></label>
+
+                  <div class="col-sm-10">
+                    <input name="nome" type="text" class="form-control" id="nome" placeholder="Nome" {%if Informacoes:%} value="{{Informacoes['nome']}}" {%endif%} required autofocus>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label"><b>Endereço:</b></label>
+
+                  <div class="col-sm-10">
+                    <input name="endereco" type="text" class="form-control" id="endereco" placeholder="Endereço" {%if Informacoes:%} value="{{Informacoes['endereco']}}" {%endif%} required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputnome" class="col-sm-2 control-label"><b>Cidade:</b></label>
+
+                  <div class="col-sm-10">
+                    <input name="cidade" type="text" class="form-control" id="cidade" placeholder="Cidade" {%if Informacoes:%} value="{{Informacoes['cidade']}}" {%endif%} required> 
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputcpf" class="col-sm-2 control-label"><b>Estado:</b></label>
+
+                  <div class="col-sm-10">
+                    <input name="estado" type="text" class="form-control" id="estado" placeholder="Estado" {%if Informacoes:%} value="{{Informacoes['estado']}}" {%endif%} required> 
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputtel" class="col-sm-2 control-label"><b>CNPJ:</b></label>
+
+                  <div class="col-sm-10">
+                    <input name="cnpj" type="text" class="form-control" id="cnpj" placeholder="CNPJ" {%if Informacoes:%} value="{{Informacoes['cnpj']}}" {%endif%} required>
+                  </div>
+                </div>
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <a href=""><button type="button" class="btn btn-default">Cancelar</button><a>
+                <button type="submit" class="btn btn-info pull-right">Salvar</button>
+              </div>
+              <!-- /.box-footer -->
+            </form>
+          </div>
+
+<hr>
+
+{% include 'listagem.html' %}
+
+{% endblock %}

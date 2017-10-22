@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% block conteudo %}
+
+<script>
+  document.getElementById('Usuario').className = 'nav-link active';
+</script>
+
+<br><br>
+<div id="formularios" class="box box-info col-sm-11">
+            <div class="box-header with-border">
+              {% if Informacoes: %}
+                <h3 class="box-title">Alterar Usuário</h3>
+              {% else %}
+                <h3 class="box-title">Cadastro de Usuário</h3>
+              {% endif %}
+            </div>
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form class="form-horizontal" method="POST" action="{% if Informacoes: %} {{url_for('alterarUsuario', index=index)}} {% else %} {{url_for('Usuario')}} {% endif %}">
+              <div class="box-body">
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label"><b>Login</b></label>
+
+                  <div class="col-sm-10">
+                    <input name="login" type="text" class="form-control" id="login" placeholder="Login" {%if Informacoes:%} value="{{Informacoes['login']}}" {%endif%} required autofocus>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label"><b>Senha</b></label>
+
+                  <div class="col-sm-10">
+                    <input name="senha" type="password" class="form-control" id="senha" placeholder="Senha" {%if Informacoes:%} value="{{Informacoes['senha']}}" {%endif%} required autofocus>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputPassword3" class="col-sm-2 control-label"><b>Tipo:</b></label>
+
+                  <div class="col-sm-10">
+                    <select name="tipo" class="form-control" style="width: 100%;" tabindex="-1" aria-hidden="true" required>
+                      <option value="A" {%if Informacoes and Informacoes['tipo'] == 'A': %} selected="selected" {%endif%}>Administrador</option>
+                      <option value="U" {%if Informacoes and Informacoes['tipo'] == 'U': %} selected="selected" {%endif%}>Usuário</option>
+                  </select>
+                  </div>
+                </div>
+
+
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <a href=""><button type="button" class="btn btn-default">Cancelar</button><a>
+                <button type="submit" class="btn btn-info pull-right">Salvar</button>
+              </div>
+              <!-- /.box-footer -->
+            </form>
+          </div>
+
+<hr>
+
+{% include 'listagem.html' %}
+
+{% endblock %}
